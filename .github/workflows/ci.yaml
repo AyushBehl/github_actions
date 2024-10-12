@@ -1,38 +1,38 @@
 name: Continuous Integration of React
 
 on:
-    pull_request:
-        branches:
-            - main
+  pull_request:
+    branches:
+      - main
 
 defaults:
-    run:
-        shell: bash
-        working-directory: ./github_actions_react
+  run:
+    shell: bash
+    working-directory: ./github_actions_react
 
 jobs:
-    test:
-        name: 'Run unit tests'
-        runs-on: ubuntu-latest
-        steps:
-            - uses: actions/checkout@v2
-              name: 'Checkout Repo'
+  test:
+    name: 'Run unit tests'
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Checkout Repo'
+        uses: actions/checkout@v2
 
-            - name: 'Install dependencies'
-              run: npm install
+      - name: 'Install dependencies'
+        run: npm install
 
-            - name: 'Run Tests'
-              run: npm run test
-    
-    lint:
-        name: 'Run lint on code'
-        runs-on: ubuntu-latest
-        steps:
-            - uses: actions/checkout@v2
-              name: 'Checkout Repo'
-            
-            - name: 'Install dependencies'
-              run: npm install
-            
-            - name: 'Run NPM Lint'
-              run: npx standard -v
+      - name: 'Run Tests'
+        run: npm run test
+
+  lint:
+    name: 'Run lint on code'
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Checkout Repo'
+        uses: actions/checkout@v2
+      
+      - name: 'Install dependencies'
+        run: npm install
+      
+      - name: 'Run NPM Lint'
+        run: npx standard -v
